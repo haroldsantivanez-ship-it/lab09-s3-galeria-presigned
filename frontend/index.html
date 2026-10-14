@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería de Imágenes - Lab S3</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Mi Galería en S3</h1>
+    <p class="sub">Lab 09 · Cloud Storage · Las imágenes viajan directo del navegador a S3 con presigned URLs</p>
+  </header>
+
+  <main>
+    <section class="uploader">
+      <label id="dropzone" for="file">
+        <input type="file" id="file" accept="image/jpeg,image/png,image/webp" hidden>
+        <strong>Arrastra una imagen aquí</strong>
+        <span>o haz clic para seleccionarla</span>
+        <small>JPG, PNG o WEBP · máximo 5 MB</small>
+      </label>
+      <div class="actions">
+        <span id="fileName">Ningún archivo seleccionado</span>
+        <button id="uploadBtn" disabled>Subir</button>
+      </div>
+      <div id="status" role="status"></div>
+    </section>
+
+    <section>
+      <div class="gallery-head">
+        <h2>Imágenes</h2>
+        <button id="refreshBtn" class="ghost">Actualizar</button>
+      </div>
+      <div id="gallery"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
