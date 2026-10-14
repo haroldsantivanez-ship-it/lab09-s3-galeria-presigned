@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galeria de Imagenes - Lab S3</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Mi Galeria en S3</h1>
+    <p class="sub">Lab 09 · Harold Santivañez · Bucket privado + presigned URLs</p>
+  </header>
+
+  <main>
+    <section id="dropzone" class="dropzone" tabindex="0">
+      <p><strong>Arrastra una imagen aqui</strong> o haz clic para elegir</p>
+      <p class="hint">JPG, PNG o WEBP · maximo 5 MB</p>
+      <input type="file" id="file" accept="image/jpeg,image/png,image/webp" hidden>
+    </section>
+
+    <div class="actions">
+      <span id="filename">Ningun archivo seleccionado</span>
+      <button id="uploadBtn" disabled>Subir</button>
+    </div>
+    <div id="status" role="status"></div>
+
+    <h2>Imagenes <button id="refreshBtn" class="link">Actualizar</button></h2>
+    <div id="gallery" class="gallery"></div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
