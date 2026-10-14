@@ -1,4 +1,4 @@
-require('dotenv').config();
+﻿require('dotenv').config();
 const path = require('path');
 const crypto = require('crypto');
 const express = require('express');
@@ -28,7 +28,7 @@ if (!BUCKET) {
 
 // El SDK toma las credenciales de las variables de entorno (.env),
 // del perfil de ~/.aws o del IAM Role (EC2/ECS/Lambda). Nunca se envian al navegador.
-const s3 = new S3Client({ region: REGION });
+const s3 = new S3Client({ region: REGION, endpoint: process.env.S3_ENDPOINT, forcePathStyle: true });
 
 const app = express();
 app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:8080'] }));
@@ -64,10 +64,10 @@ app.post('/api/upload-url', uploadLimiter, async (req, res) => {
       return res.status(400).json({ error: 'Tipo de archivo no permitido' });
     }
     if (!Number.isInteger(sizeBytes) || sizeBytes <= 0) {
-      return res.status(400).json({ error: 'Tamaño de archivo inválido' });
+      return res.status(400).json({ error: 'TamaÃ±o de archivo invÃ¡lido' });
     }
     if (sizeBytes > MAX_SIZE_BYTES) {
-      return res.status(400).json({ error: `Archivo demasiado grande (máx. ${MAX_SIZE_MB} MB)` });
+      return res.status(400).json({ error: `Archivo demasiado grande (mÃ¡x. ${MAX_SIZE_MB} MB)` });
     }
 
     // Nombre seguro y unico (evita ../ y caracteres raros)
@@ -121,7 +121,7 @@ app.delete('/api/images/:key(*)', async (req, res) => {
   try {
     const key = req.params.key;
     if (!isValidKey(key)) {
-      return res.status(400).json({ error: 'Clave inválida' });
+      return res.status(400).json({ error: 'Clave invÃ¡lida' });
     }
     await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: key }));
     res.json({ deleted: true, key });
@@ -135,3 +135,4 @@ app.listen(PORT, () => {
   console.log(`API escuchando en http://localhost:${PORT}`);
   console.log(`Bucket: ${BUCKET} (${REGION})`);
 });
+
